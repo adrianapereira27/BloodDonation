@@ -5,6 +5,12 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonation", "BloodDonation\BloodDonation.csproj", "{6E13DDA4-2DBF-45F7-AA18-B2AABFB3AA2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonation.Core", "BloodDonation.Core\BloodDonation.Core.csproj", "{BF4B57DE-CFAD-4AB1-9B75-0E08B356BE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonation.Application", "BloodDonation.Application\BloodDonation.Application.csproj", "{B1F5CE5B-2903-4111-82E1-1C800BACFC6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonation.Infrastructure", "BloodDonation.Infrastructure\BloodDonation.Infrastructure.csproj", "{6D16D678-10C9-4E41-AACF-349D4E4649E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{6E13DDA4-2DBF-45F7-AA18-B2AABFB3AA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E13DDA4-2DBF-45F7-AA18-B2AABFB3AA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E13DDA4-2DBF-45F7-AA18-B2AABFB3AA2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF4B57DE-CFAD-4AB1-9B75-0E08B356BE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4B57DE-CFAD-4AB1-9B75-0E08B356BE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4B57DE-CFAD-4AB1-9B75-0E08B356BE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4B57DE-CFAD-4AB1-9B75-0E08B356BE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1F5CE5B-2903-4111-82E1-1C800BACFC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1F5CE5B-2903-4111-82E1-1C800BACFC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1F5CE5B-2903-4111-82E1-1C800BACFC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1F5CE5B-2903-4111-82E1-1C800BACFC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D16D678-10C9-4E41-AACF-349D4E4649E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D16D678-10C9-4E41-AACF-349D4E4649E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D16D678-10C9-4E41-AACF-349D4E4649E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D16D678-10C9-4E41-AACF-349D4E4649E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
