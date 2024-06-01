@@ -25,8 +25,7 @@ namespace BloodDonation.Infrastructure.Persistence.Repositories
 
             if (!string.IsNullOrWhiteSpace(query))
             {
-                donors = donors.Where(p => p.FullName.Contains(query) || 
-                p.Donation.DonationDate.Contains(query));
+                donors = donors.Where(p => p.FullName.Contains(query));
             }
 
             return await _dbContext.Donors.ToListAsync();

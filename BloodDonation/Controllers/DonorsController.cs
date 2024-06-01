@@ -2,7 +2,6 @@
 using BloodDonation.Application.Queries.GetAllDonors;
 using BloodDonation.Application.Queries.GetDonorById;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BloodDonation.Controllers
@@ -28,7 +27,7 @@ namespace BloodDonation.Controllers
         {
             var query = new GetDonorByIdQuery(id);
 
-            var donor =  await _mediator.Send(query);
+            var donor = await _mediator.Send(query);
 
             if (donor == null)
             {

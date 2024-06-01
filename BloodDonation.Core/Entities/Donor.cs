@@ -4,7 +4,7 @@ namespace BloodDonation.Core.Entities
 {
     public class Donor : BaseEntity
     {        
-        public Donor(string fullName, string email, DateTime birthDate, GenderEnum gender, double weight, BloodTypeEnum bloodType, string rhFactor, int idAddress, int idDonation)
+        public Donor(string fullName, string email, DateTime birthDate, GenderEnum gender, double weight, BloodTypeEnum bloodType, string rhFactor)
         {
             FullName = fullName;
             Email = email;
@@ -12,9 +12,7 @@ namespace BloodDonation.Core.Entities
             Gender = gender;
             Weight = weight;
             BloodType = bloodType;
-            RhFactor = rhFactor;
-            IdAddress = idAddress;
-            IdDonation = idDonation;
+            RhFactor = rhFactor;                        
 
             Donations = new List<Donation>();
         }
@@ -25,11 +23,7 @@ namespace BloodDonation.Core.Entities
         public GenderEnum Gender { get; private set; }
         public double Weight { get; private set; }
         public BloodTypeEnum BloodType { get; private set; }
-        public string RhFactor { get; private set; }
-        public int IdAddress { get; private set; }
-        public Address Address { get; private set; } 
-        public int IdDonation { get; private set; }
-        public Donation Donation { get; private set; }
+        public string RhFactor { get; private set; }                    
         public List<Donation> Donations { get; private set; }
 
     }

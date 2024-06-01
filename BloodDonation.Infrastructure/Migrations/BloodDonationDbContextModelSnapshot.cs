@@ -55,8 +55,7 @@ namespace BloodDonation.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdDonor")
-                        .IsUnique();
+                    b.HasIndex("IdDonor");
 
                     b.ToTable("Addresses");
                 });
@@ -121,39 +120,33 @@ namespace BloodDonation.Infrastructure.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("BloodType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DonationId")
-                        .HasColumnType("int");
+                    b.Property<string>("BloodType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdAddress")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdDonation")
-                        .HasColumnType("int");
 
                     b.Property<string>("RhFactor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<double>("Weight")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DonationId");
 
                     b.ToTable("Donors");
                 });
@@ -161,9 +154,9 @@ namespace BloodDonation.Infrastructure.Migrations
             modelBuilder.Entity("BloodDonation.Core.Entities.Address", b =>
                 {
                     b.HasOne("BloodDonation.Core.Entities.Donor", "Donor")
-                        .WithOne("Address")
-                        .HasForeignKey("BloodDonation.Core.Entities.Address", "IdDonor")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany()
+                        .HasForeignKey("IdDonor")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Donor");
@@ -182,20 +175,6 @@ namespace BloodDonation.Infrastructure.Migrations
 
             modelBuilder.Entity("BloodDonation.Core.Entities.Donor", b =>
                 {
-                    b.HasOne("BloodDonation.Core.Entities.Donation", "Donation")
-                        .WithMany()
-                        .HasForeignKey("DonationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Donation");
-                });
-
-            modelBuilder.Entity("BloodDonation.Core.Entities.Donor", b =>
-                {
-                    b.Navigation("Address")
-                        .IsRequired();
-
                     b.Navigation("Donations");
                 });
 #pragma warning restore 612, 618

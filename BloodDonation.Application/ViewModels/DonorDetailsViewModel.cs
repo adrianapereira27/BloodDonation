@@ -4,7 +4,7 @@ namespace BloodDonation.Application.ViewModels
 {
     public class DonorDetailsViewModel
     {
-        public DonorDetailsViewModel(int id, string fullName, string email, GenderEnum gender, double weight, BloodTypeEnum bloodType, string rhFactor, string donationDate)
+        public DonorDetailsViewModel(int id, string fullName, string email, GenderEnum gender, double weight, BloodTypeEnum bloodType, string rhFactor)
         {
             Id = id;
             FullName = fullName;
@@ -12,8 +12,7 @@ namespace BloodDonation.Application.ViewModels
             Gender = gender;
             Weight = weight;
             BloodType = bloodType;
-            RhFactor = rhFactor;
-            DonationDate = donationDate;
+            RhFactor = rhFactor;            
         }
 
         public int Id { get; private set; }
@@ -22,7 +21,6 @@ namespace BloodDonation.Application.ViewModels
         public GenderEnum Gender { get; private set; }
         public double Weight { get; private set; }
         public BloodTypeEnum BloodType { get; private set; }
-        public string RhFactor { get; private set; }
-        public string DonationDate { get; private set; }
+        public string RhFactor { get; private set; }        
     }
 }

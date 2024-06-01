@@ -14,7 +14,7 @@ namespace BloodDonation.Application.Commands.CreateDonor
         }
         public async Task<int> Handle(CreateDonorCommand request, CancellationToken cancellationToken)
         {
-            var donor = new Donor(request.FullName, request.Email, request.BirthDate, request.Gender, request.Weight, request.BloodType, request.RhFactor, request.IdAddress, request.IdDonation);
+            var donor = new Donor(request.FullName, request.Email, request.BirthDate, request.Gender, request.Weight, request.BloodType, request.RhFactor);
 
             await _donorRepository.AddAsync(donor);
 

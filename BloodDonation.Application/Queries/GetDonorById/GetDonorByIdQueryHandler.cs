@@ -26,8 +26,7 @@ namespace BloodDonation.Application.Queries.GetDonorById
                 donor.Gender,
                 donor.Weight,                
                 donor.BloodType,
-                donor.RhFactor,
-                donor.Donation.DonationDate
+                donor.RhFactor                
                 );
 
             return donorDetailsViewModel;

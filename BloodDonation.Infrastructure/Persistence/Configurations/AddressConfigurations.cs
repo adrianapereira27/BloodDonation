@@ -1,11 +1,6 @@
 ﻿using BloodDonation.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BloodDonation.Infrastructure.Persistence.Configurations
 {
@@ -31,12 +26,12 @@ namespace BloodDonation.Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(20);
 
-            // Relacionamento um-para-um entre Donor e Address
+            // Definindo o relacionamento com a entidade Donor
             builder.HasOne(a => a.Donor)
-                .WithOne(d => d.Address)
-                .HasForeignKey<Address>(a => a.IdDonor)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany()  // Relacionamento One-to-Many ou Many-to-One (ajuste conforme necessário)
+                .HasForeignKey(a => a.IdDonor)
+                .OnDelete(DeleteBehavior.Cascade);  // Configurando a exclusão em cascata
+
         }
     }
 }

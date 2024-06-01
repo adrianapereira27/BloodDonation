@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BloodDonation.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigracion : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,25 @@ namespace BloodDonation.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Donors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Weight = table.Column<double>(type: "float", nullable: false),
+                    BloodType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RhFactor = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Donors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Addresses",
                 columns: table => new
                 {
@@ -41,6 +60,12 @@ namespace BloodDonation.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Addresses_Donors_IdDonor",
+                        column: x => x.IdDonor,
+                        principalTable: "Donors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,76 +81,28 @@ namespace BloodDonation.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Donations", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Donors",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    Weight = table.Column<double>(type: "float", nullable: false),
-                    BloodType = table.Column<int>(type: "int", nullable: false),
-                    RhFactor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdAddress = table.Column<int>(type: "int", nullable: false),
-                    IdDonation = table.Column<int>(type: "int", nullable: false),
-                    DonationId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Donors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Donors_Donations_DonationId",
-                        column: x => x.DonationId,
-                        principalTable: "Donations",
+                        name: "FK_Donations_Donors_IdDonor",
+                        column: x => x.IdDonor,
+                        principalTable: "Donors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_IdDonor",
                 table: "Addresses",
-                column: "IdDonor",
-                unique: true);
+                column: "IdDonor");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Donations_IdDonor",
                 table: "Donations",
                 column: "IdDonor");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Donors_DonationId",
-                table: "Donors",
-                column: "DonationId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Addresses_Donors_IdDonor",
-                table: "Addresses",
-                column: "IdDonor",
-                principalTable: "Donors",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Donations_Donors_IdDonor",
-                table: "Donations",
-                column: "IdDonor",
-                principalTable: "Donors",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Donations_Donors_IdDonor",
-                table: "Donations");
-
             migrationBuilder.DropTable(
                 name: "Addresses");
 
@@ -133,10 +110,10 @@ namespace BloodDonation.Infrastructure.Migrations
                 name: "BloodStocks");
 
             migrationBuilder.DropTable(
-                name: "Donors");
+                name: "Donations");
 
             migrationBuilder.DropTable(
-                name: "Donations");
+                name: "Donors");
         }
     }
 }
