@@ -28,6 +28,8 @@ namespace BloodDonation.Controllers
             }
             return Ok(address);
         }
+
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateAddressCommand command)
         {
             var id = await _mediator.Send(command);

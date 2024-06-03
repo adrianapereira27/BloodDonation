@@ -11,7 +11,6 @@ namespace BloodDonation.Application.Commands.CreateDonor
         public GenderEnum Gender { get; set; }
         public double Weight { get; set; }
         public BloodTypeEnum BloodType { get; set; }
-        public string RhFactor { get; set; }
-        public int IdAddress { get; set; }        
+        public string RhFactor { get; set; }             
     }
 }
